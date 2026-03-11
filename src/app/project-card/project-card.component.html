@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex align-items-center justify-content-between mt-5">
+      <div class="lesson_name">
+        <div class="project-block light-orange-bg">
+          <i class="icofont-dashboard-web"></i>
+        </div>
+        <span class="small text-muted project_name fw-bold">{{ project.name }}</span>
+        <h6 class="mb-0 fw-bold fs-6 mb-2">{{ project.category }}</h6>
+      </div>
+    </div>
+
+    <!-- 🔥 Display Employees -->
+    <div class="d-flex align-items-center mt-3">
+      <div class="avatar-list avatar-list-stacked">
+        <ng-container *ngIf="project?.employees && project.employees.length > 0; else noEmployees">
+          <ng-container *ngFor="let employee of project.employees">
+            <span class="avatar rounded-circle text-center pointer sm" [title]="employee.employeeName">
+              <img class="avatar rounded-circle sm" src="assets/images/xs/avatar2.svg" alt="{{ employee.employeeName }}">
+            </span>
+          </ng-container>
+        </ng-container>
+
+        <!-- Fallback for No Employees -->
+        <ng-template #noEmployees>
+          <span class="text-muted">No Employees Assigned</span>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="row g-2 pt-4">
+      <div class="col-6"><i class="icofont-sand-clock"></i><span class="ms-2">{{ project.startDate | date }}</span></div>
+      <div class="col-6"><i class="icofont-sand-clock"></i><span class="ms-2">{{ project.endDate | date }}</span></div>
+      <div class="col-6"><i class="icofont-currency-dollar"></i><span class="ms-2">{{ project.budget | currency }}</span></div>
+      <div class="col-6"><i class="icofont-flag-alt-1"></i><span class="ms-2">{{ project.priority }}</span></div>
+    </div>
+
+    <p class="mt-3">{{ project.description }}</p>
+  </div>
+</div>
